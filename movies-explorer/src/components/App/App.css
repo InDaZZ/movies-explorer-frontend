@@ -1,0 +1,10 @@
+.App {
+  text-align: center;
+}
+
+.page {
+  font-family: "Inter", Arial, sans-serif;
+  width: 100%;
+  min-height: 100vh;
+  margin: 0 auto;
+}

@@ -1,0 +1,142 @@
+.aboutproject {
+  padding: 110px 70px;
+
+}
+
+@media screen and (max-width: 850px) {
+  .aboutproject {
+    padding: 70px 50px;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .aboutproject {
+    padding: 70px 18px;
+  }
+}
+
+.aboutproject__title {
+  margin: 0 0 70px;
+  color: #000;
+  font-family: Inter;
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.88px;
+  border-bottom: 1px solid;
+  padding-bottom: 23px;
+}
+
+@media screen and (max-width: 550px) {
+  .aboutproject__title {
+    margin: 0 0 60px;
+    padding-bottom: 28px;
+    font-size: 18px;
+    letter-spacing: -0.72px;
+  }
+}
+
+.aboutproject__info-container {
+  display: flex;
+}
+
+@media screen and (max-width: 550px) {
+  .aboutproject__info-container {
+    flex-direction: column;
+  }
+}
+
+
+@media screen and (max-width: 550px) {
+  .aboutproject__item-container {
+    margin-bottom: 60px;
+  }
+}
+
+
+.aboutproject__info-title {
+  color: #000;
+  font-family: Inter;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.8px;
+}
+
+@media screen and (max-width: 550px) {
+  .aboutproject__info-title {
+    font-size: 18px;
+    letter-spacing: -0.72px;
+    margin: 0 0 16px;
+  }
+}
+
+.aboutproject__info-text {
+  color: #000;
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+}
+
+.aboutproject__time-container {
+  display: flex;
+  margin-bottom: 90px;
+}
+
+.aboutproject__backend-container {
+  width: 30%;
+}
+
+.aboutproject__frontend-container {
+  width: 70%;
+}
+
+.aboutproject__time-line {
+  text-align: center;
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  padding: 9px 0;
+}
+
+@media screen and (max-width: 550px) {
+  .aboutproject__time-line {
+    font-size: 11px;
+    padding: 11px 0;
+  }
+}
+
+.aboutproject__time-line_backend {
+  color: #FFF;
+  background-color: black;
+
+}
+
+.aboutproject__time-line_frontend {
+  color: #000;
+  background-color: #F2F2F2;
+
+}
+
+.aboutproject__text {
+  color: #A0A0A0;
+  text-align: center;
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 17px;
+}
+
+@media screen and (max-width: 550px) {
+  .aboutproject__text {
+    font-size: 11px;
+    line-height: normal
+  }
+}
