@@ -63,12 +63,16 @@
 }
 
 .moviescard__button-like {
-  background-image: url(../../images/movie-like-active.jpg);
-  background-size: contain;
+  background-color: #FFF;
+  background-image: url(../../images/movie-like-active.svg);
   width: 20px;
   height: 20px;
   border: none;
+  background-size: auto;
+  padding: 0;
+  background-position: center;
 }
+
 
 .moviescard__button-like:hover {
   cursor: pointer;

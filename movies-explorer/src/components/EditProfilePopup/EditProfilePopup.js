@@ -44,7 +44,7 @@ function EditProfilePopup ( {isOpen, onClose, onUpdateUser,isLoading} ) {
       <span className="fullName-error popup__error"></span>
     </label>
     <label htmlFor="email" className="popup__field">
-      <input type="text" className="popup__item popup__item_type_email" placeholder="О себе" name="email"
+      <input type="text" className="popup__item popup__item_type_email" placeholder="E-mail" name="email"
         id="email" value={email || ''} minLength="2" maxLength="200" required onChange={handleChangeEmail}/>
       <span className="activity-error popup__error"></span>
     </label>

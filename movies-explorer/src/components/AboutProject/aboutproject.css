@@ -5,7 +5,7 @@
 
 @media screen and (max-width: 850px) {
   .aboutproject {
-    padding: 70px 50px;
+    padding: 90px 50px;
   }
 }
 
@@ -47,15 +47,36 @@
   }
 }
 
+.aboutproject__item-container:nth-last-child(1) {
+  padding-left: 52px;
+}
+
+@media screen and (max-width: 850px) {
+  .aboutproject__item-container:nth-last-child(1) {
+    padding-left: 40px;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .aboutproject__item-container:nth-last-child(1) {
+    padding-left: 0;
+  }
+}
 
 @media screen and (max-width: 550px) {
   .aboutproject__item-container {
-    margin-bottom: 60px;
+    margin-bottom: 57px;
+  }
+}
+@media screen and (max-width: 550px) {
+  .aboutproject__item-container:nth-last-child(1) {
+    margin-bottom: 0;
   }
 }
 
 
 .aboutproject__info-title {
+  margin: 0;
   color: #000;
   font-family: Inter;
   font-size: 20px;
@@ -74,6 +95,7 @@
 }
 
 .aboutproject__info-text {
+  margin: 25px 0 0 0;
   color: #000;
   font-family: Inter;
   font-size: 14px;
@@ -82,17 +104,57 @@
   line-height: 20px;
 }
 
+@media screen and (max-width: 850px) {
+  .aboutproject__info-text {
+    font-size: 12px;
+    line-height: 18px;
+    margin: 22px 0 0 0;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .aboutproject__info-text {
+    font-size: 11px;
+    line-height: 16px;
+    margin: 16px 0 0 0;
+  }
+}
+
 .aboutproject__time-container {
   display: flex;
-  margin-bottom: 90px;
+  margin: 98px 0 0;
+}
+
+@media screen and (max-width: 850px) {
+  .aboutproject__time-container {
+    margin: 93px 0 0;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .aboutproject__time-container {
+    margin: 60.7px 0 0;
+  }
 }
 
 .aboutproject__backend-container {
-  width: 30%;
+  width: 20%;
+}
+
+@media screen and (max-width: 850px) {
+  .aboutproject__backend-container {
+    width: 21%;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .aboutproject__backend-container {
+    width: 44.0%;
+  }
 }
 
 .aboutproject__frontend-container {
-  width: 70%;
+  width: 80%;
 }
 
 .aboutproject__time-line {
@@ -103,6 +165,7 @@
   font-weight: 400;
   line-height: normal;
   padding: 9px 0;
+  margin: 0;
 }
 
 @media screen and (max-width: 550px) {
@@ -132,6 +195,8 @@
   font-style: normal;
   font-weight: 500;
   line-height: 17px;
+  margin: 0;
+  margin-top: 1em
 }
 
 @media screen and (max-width: 550px) {

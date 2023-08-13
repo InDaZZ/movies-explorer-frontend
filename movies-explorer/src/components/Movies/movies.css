@@ -1,16 +1,16 @@
 .movies {
-  padding: 18px 70px 0;
+  padding: 67px 70px 77px;
 }
 
 @media screen and (max-width: 850px) {
   .movies {
-    padding: 18px 30px 0;
+    padding: 79px 30px 81px;
   }
 }
 
 @media screen and (max-width: 550px) {
   .movies {
-    padding: 18px 10px 0;
+    padding: 20px 10px 81px;
   }
 }
 
@@ -27,5 +27,6 @@
   font-style: normal;
   font-weight: 500;
   line-height: normal;
-  margin: 80px 0 168px;
+  margin-top: 80px;
+  padding: 0;
 }

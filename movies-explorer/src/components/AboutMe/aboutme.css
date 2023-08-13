@@ -1,5 +1,5 @@
 .aboutme {
-  padding: 100px 70px;
+  padding: 110px 70px 101px;
 }
 
 @media screen and (max-width: 850px) {
@@ -32,6 +32,7 @@
     font-size: 18px;
     letter-spacing: -0.72px;
     margin-bottom: 60px;
+    padding-bottom: 28px;
   }
 }
 
@@ -63,6 +64,7 @@
 
 @media screen and (max-width: 850px) {
   .aboutme__name {
+    margin: 0 0 16px;
     font-size: 40px;
     line-height: 40px;
     letter-spacing: -1.6px;
@@ -71,7 +73,7 @@
 
 @media screen and (max-width: 550px) {
   .aboutme__name {
-    margin: 40px 0 20px;
+    margin: 40px 0 16px;
     font-size: 30px;
     letter-spacing: -1.2px;
   }
@@ -84,9 +86,17 @@
   max-height: 327px;
 }
 
+@media screen and (max-width: 1000px) {
+  .aboutme__photo {
+
+    margin-left: 150px;
+  }
+}
+
 @media screen and (max-width: 850px) {
   .aboutme__photo {
-    max-height: 370px;
+    max-width: 255px;
+    max-height: 307px;
     margin-left: 49px;
   }
 }
@@ -114,6 +124,7 @@
 
 @media screen and (max-width: 850px) {
   .aboutme__briefly {
+    margin: 0 0 20px;
     font-size: 12px;
     line-height: 18px;
   }
@@ -139,9 +150,17 @@
 
 @media screen and (max-width: 850px) {
   .aboutme__expanded {
+    font-size: 12px;
+    line-height: 18px;
+    margin: 0 0 87px;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .aboutme__expanded {
     font-size: 11px;
     line-height: 16px;
-    margin-bottom: 40px;
+    margin: 0 0 40px;
   }
 }
 

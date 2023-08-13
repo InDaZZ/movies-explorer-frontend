@@ -4,7 +4,7 @@ import './header.css';
 import headerLogo from '../../images/logo.svg';
 import Navigation from '../Navigation/Navigation.js';
 
-function Header() {
+function Header({ isMainHeader, isСenteredHeader, openSeidMenu }) {
   const headerLocation = useLocation();
   const headercurrentLocation = headerLocation.pathname;
 
@@ -16,16 +16,16 @@ function Header() {
       </div>
     }
     if (headercurrentLocation === '/movies' || headercurrentLocation === '/saved-movies' || headercurrentLocation === '/profile') {
-      return <Navigation></Navigation>
+      return <Navigation openSeidMenu={openSeidMenu}></Navigation>
     }
     else {
-      return
+      return 
     }
   };
 
   return (
-    <header className="header">
-      <Link to='/'><img src={headerLogo} alt='Логотип шапки сайта' className='header__logo'></img></Link>
+    <header className={`header ${isMainHeader ? "header_main" : ""} ${isСenteredHeader ? "header_profile" : ""}`}>
+      <Link to='/' className='header__logo-link'><img src={headerLogo} alt='Логотип шапки сайта' className='header__logo'></img></Link>
       {headerRender()}
     </header>
   )

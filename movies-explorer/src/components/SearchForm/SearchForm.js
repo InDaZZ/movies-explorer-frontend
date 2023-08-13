@@ -6,8 +6,10 @@ function SearchForm() {
 
   return (
     <form className='searchform'>
-      <img src={iconSearch} className='searchform__icon' alt='Изображение лупы слева от строки поиска'></img>
-      <input className='searchform__films' placeholder='Фильм'></input>
+      <label htmlFor='searchform__films' className='searchform__label'>
+        <img src={iconSearch} className='searchform__icon' alt='Изображение лупы слева от строки поиска'></img>
+        <input className='searchform__films' placeholder='Фильм' id='searchform__films' required></input>
+      </label>
       <div className='searchform__submit-button-container'>
         <button type='submit' className='searchform__submit-button'>Найти</button>
       </div>

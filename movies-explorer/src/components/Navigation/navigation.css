@@ -57,12 +57,19 @@
   align-items: center;
   width: 100px;
   height: 32px;
+  align-self: center;
+  padding: 0;
+  margin: 0;
 }
 
 @media screen and (max-width: 850px) {
   .navigation__profile-button {
     display: none;
   }
+}
+
+.navigation__profile-icon {
+  padding-left: 15px;
 }
 
 .navigation__profile-text {
@@ -73,6 +80,8 @@
   font-style: normal;
   font-weight: 500;
   line-height: 16px;
+  margin: 0;
+  padding-right: 11px;
 }
 
 @media screen and (max-width: 850px) {
@@ -88,22 +97,25 @@
   height: 44px;
   border: none;
   background-position: center;
-  
+
 }
 
 @media screen and (max-width: 850px) {
   .navigation__menu-button {
     display: block;
+    max-height: 40px;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .navigation__menu-button {
+    background-image: url('../../images/menuButtonMobile.svg');
+    background-color: #FFF;
+    background-position: right;
   }
 }
 
 .navigation__menu-button:hover {
   opacity: 0.8;
   cursor: pointer;
-}
-
-@media screen and (max-width: 850px) {
-  .button__menu-button {
-    display: block;
-  }
 }

@@ -9,18 +9,18 @@ function Portfolio() {
       <h2 className='portfolio__title'>Портфолио</h2>
       <div className='portfolio__links-container'>
         <div className='portfolio__link-container'>
-          <a href='https://github.com/InDaZZ/how-to-learn' rel="noreferrer" target="_blank" className='portfolio__link'>Статичный сайт</a>
-          <a href='https://github.com/InDaZZ/how-to-learn' rel="noreferrer" target="_blank" className='portfolio__link-mark'><img src={linkMark} alt='Статичный сайт ссылка'></img></a>
+          <a href='https://indazz.github.io/how-to-learn/' rel="noreferrer" target="_blank" className='portfolio__link'>Статичный сайт</a>
+          <a href='https://indazz.github.io/how-to-learn/' rel="noreferrer" target="_blank" className='portfolio__link-mark'><img src={linkMark} alt='Статичный сайт ссылка' className='portfolio__link-image'></img></a>
         </div>
 
         <div className='portfolio__link-container'>
           <a href='https://indazz.github.io/russian-travel/Index.html' rel="noreferrer" target="_blank" className='portfolio__link'>Адаптивный сайт</a>
-          <a href='https://indazz.github.io/russian-travel/Index.html' rel="noreferrer" target="_blank" className=' portfolio__link-mark'><img src={linkMark} alt='Адаптивный сайт ссылка'></img></a>
+          <a href='https://indazz.github.io/russian-travel/Index.html' rel="noreferrer" target="_blank" className=' portfolio__link-mark'><img src={linkMark} alt='Адаптивный сайт ссылка' className='portfolio__link-image'></img></a>
         </div>
 
         <div className='portfolio__link-container'>
           <a href='https://indazz.github.io/mesto/' rel="noreferrer" target="_blank" className='portfolio__link'>Одностраничное приложение</a>
-          <a href='https://indazz.github.io/mesto/' rel="noreferrer" target="_blank" className='portfolio__link-mark'><img src={linkMark} alt='Одностраничное приложение ссылка'></img></a>
+          <a href='https://indazz.github.io/mesto/' rel="noreferrer" target="_blank" className='portfolio__link-mark'><img src={linkMark} alt='Одностраничное приложение ссылка' className='portfolio__link-image'></img></a>
         </div>
       </div>
     </section>

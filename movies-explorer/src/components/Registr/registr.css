@@ -1,7 +1,7 @@
 .registr {
   max-width: 400px;
   margin: auto;
-  padding-top: 70px;
+  padding-top: 40px;
 }
 
 @media screen and (max-width: 550px) {
@@ -11,7 +11,7 @@
 }
 
 .registr__heading {
-  margin: 40px 0;
+  margin: 0 0 40px;
   color: #000;
   font-family: Inter;
   font-size: 24px;
@@ -22,6 +22,7 @@
 
 @media screen and (max-width: 550px) {
   .registr__heading {
+    margin: 0 0 82px;
     text-align: center;
     font-size: 24px;
   }
@@ -44,7 +45,21 @@
 .registr__form {
   display: flex;
   flex-direction: column;
-  margin: 40px 0 31px;
+  margin: 0 0 16px;
+}
+
+@media screen and (max-width: 850px) {
+  .registr__form {
+    max-width: 396px;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .registr__form {
+    padding-top: 30px;
+    max-width: 260px;
+    margin: 0 0 14px;
+  }
 }
 
 .registr__item-title {
@@ -59,7 +74,7 @@
 }
 
 .registr__field {
-  padding-bottom: 20px;
+  padding-bottom: 22px;
   width: 100%;
   color: #000;
   font-family: Inter;
@@ -67,6 +82,10 @@
   font-style: normal;
   font-weight: 500;
   line-height: normal;
+}
+
+.registr__field:nth-child(4) {
+  padding-bottom: 10px;
 }
 
 @media screen and (max-width: 550px) {
@@ -87,6 +106,15 @@
   font-style: normal;
   font-weight: 500;
   line-height: normal;
+  margin-top: 68px;
+}
+
+
+@media screen and (max-width: 550px) {
+  .registr__button {
+    margin-top: 156px;
+    font-size: 12px;
+  }
 }
 
 .registr__button:hover {
@@ -133,4 +161,13 @@
   .registr__textLink-signin {
     font-size: 12px;
   }
+}
+
+.registr__error-message {
+  color: #FF4062;
+  font-family: Inter;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 }

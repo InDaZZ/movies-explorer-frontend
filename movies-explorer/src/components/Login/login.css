@@ -1,7 +1,7 @@
 .login {
   max-width: 400px;
   margin: auto;
-  padding-top: 70px;
+  padding-top: 40px;
 }
 
 @media screen and (max-width: 550px) {
@@ -11,7 +11,7 @@
 }
 
 .login__heading {
-  margin: 40px 0;
+  margin: 0 0 40px;
   color: #000;
   font-family: Inter;
   font-size: 24px;
@@ -22,6 +22,7 @@
 
 @media screen and (max-width: 550px) {
   .login__heading {
+    margin: 0 0 82px;
     text-align: center;
     font-size: 24px;
   }
@@ -30,7 +31,21 @@
 .login__form {
   display: flex;
   flex-direction: column;
-  margin: 40px 0 31px;
+  margin: 0 0 16px;
+}
+
+@media screen and (max-width: 850px) {
+  .login__form {
+    max-width: 396px;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .login__form {
+    padding-top: 30px;
+    max-width: 260px;
+    margin: 0 0 14px;
+  }
 }
 
 .login__item {
@@ -77,6 +92,7 @@
 
 .login__button {
   border: none;
+  margin-top: 160px;
   padding: 15px 0;
   border-radius: 3px;
   background: #000;
@@ -87,6 +103,13 @@
   font-style: normal;
   font-weight: 500;
   line-height: normal;
+}
+
+@media screen and (max-width: 550px) {
+  .login__button {
+    margin-top: 249px;
+    font-size: 12px;
+  }
 }
 
 .login__button:hover {
