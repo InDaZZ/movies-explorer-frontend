@@ -64,7 +64,7 @@
 
 .moviescard__button-like {
   background-color: #FFF;
-  background-image: url(../../images/movie-like-active.svg);
+  background-image: url(../../images/movie-like.svg);
   width: 20px;
   height: 20px;
   border: none;
@@ -73,8 +73,28 @@
   background-position: center;
 }
 
+.moviescard__button-like_active {
+  background-image: url(../../images/movie-like-active.svg);
+}
+
 
 .moviescard__button-like:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+.moviescard__button-delet-like {
+  background-image: url(../../images/delete-like-button.svg);
+  background-color: #FFF;
+  width: 20px;
+  height: 20px;
+  border: none;
+  background-size: auto;
+  padding: 0;
+  background-position: center;
+}
+
+.moviescard__button-delet-like:hover {
   cursor: pointer;
   opacity: 0.8;
 }

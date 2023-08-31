@@ -4,11 +4,15 @@ import './header.css';
 import headerLogo from '../../images/logo.svg';
 import Navigation from '../Navigation/Navigation.js';
 
-function Header({ isMainHeader, isСenteredHeader, openSeidMenu }) {
+function Header({ isMainHeader, isСenteredHeader, openSeidMenu, isLogged }) {
   const headerLocation = useLocation();
   const headercurrentLocation = headerLocation.pathname;
 
   function headerRender() {
+    if (headercurrentLocation === '/' && (isLogged === true) ) {
+      return <Navigation openSeidMenu={openSeidMenu}></Navigation>
+    }
+
     if (headercurrentLocation === '/') {
       return <div className='header__button-container'>
         <Link to='/signup' className="header__registration-button">Регистрация</Link>
@@ -19,7 +23,7 @@ function Header({ isMainHeader, isСenteredHeader, openSeidMenu }) {
       return <Navigation openSeidMenu={openSeidMenu}></Navigation>
     }
     else {
-      return 
+      return
     }
   };
 

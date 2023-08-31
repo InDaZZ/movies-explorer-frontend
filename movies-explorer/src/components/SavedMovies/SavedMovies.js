@@ -5,15 +5,14 @@ import MoviesCard from '../MoviesCard/MoviesCard.js';
 import MoviesCardList from '../MoviesCardList/MoviesCardList.js';
 
 
-function SavedMovies() {
-  
+function SavedMovies({ movies, handleDelteLike, filterMovies, moviesArr }) {
+
   return (
     <>
       <section className='savedmovies'>
-        <SearchForm></SearchForm>
-        <MoviesCardList>
-          <MoviesCard></MoviesCard>
-        </MoviesCardList>
+        <SearchForm filterMovies={filterMovies} moviesArr={moviesArr}></SearchForm>
+        <MoviesCardList parent='SavedMovies' movies={movies} handleDelteLike={handleDelteLike}></MoviesCardList>
+
       </section>
     </>
   )

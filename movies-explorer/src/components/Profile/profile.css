@@ -1,5 +1,6 @@
 .profile {
   padding: 18px 70px 0;
+  position: relative;
 }
 
 @media screen and (max-width: 550px) {
@@ -96,9 +97,19 @@
   margin: 0;
 }
 
+.profile__management {
+  margin-top: 220px;
+}
+
+@media screen and (max-width: 850px) {
+  .profile__management {
+    margin-top: 209px;
+  }
+}
+
 .profile__button-edit {
   display: block;
-  margin: 220px auto 16px;
+  margin: 0 auto 16px;
   color: #000;
   text-align: center;
   font-family: Inter;
@@ -108,12 +119,6 @@
   line-height: normal;
   border: none;
   background: none;
-}
-
-@media screen and (max-width: 850px) {
-  .profile__button-edit {
-    margin-top: 209px;
-  }
 }
 
 .profile__button-edit:hover {
@@ -141,6 +146,15 @@
   line-height: normal;
   border: none;
   background: none;
+}
+
+.profile__change-status {
+  margin: auto;
+  text-align: center;
+  display: block;
+  margin-bottom: 30px;
+  position: relative;
+  top: -125px;
 }
 
 @media screen and (max-width: 550px) {

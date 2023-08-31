@@ -102,6 +102,11 @@
   max-width: 358px;
   margin: 48px 36px 37px 36px;
 }
+.popup__button_inactive {
+  color: #C4C4C4;
+  background: #FFFFFF;
+  border: 1px solid #C4C4C4;
+}
 
 @media screen and (max-width: 650px) {
   .popup__button-submit {
@@ -110,4 +115,5 @@
     max-width: 238px;
     margin: 45px 22px 25px 22px;
   }
+  
 }

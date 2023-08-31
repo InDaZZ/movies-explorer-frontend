@@ -94,6 +94,18 @@
   }
 }
 
+.registr__button-container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 68px;
+}
+
+@media screen and (max-width: 550px) {
+  .registr__button-container {
+    margin-top: 156px;
+  }
+}
+
 .registr__button {
   border: none;
   padding: 15px 0;
@@ -106,13 +118,11 @@
   font-style: normal;
   font-weight: 500;
   line-height: normal;
-  margin-top: 68px;
 }
 
 
 @media screen and (max-width: 550px) {
   .registr__button {
-    margin-top: 156px;
     font-size: 12px;
   }
 }
@@ -170,4 +180,9 @@
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+}
+
+.registr__error-message_submit {
+  text-align: center;
+  margin-bottom: 5px
 }

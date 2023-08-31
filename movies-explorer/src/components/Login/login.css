@@ -58,6 +58,20 @@
   box-sizing: border-box;
 }
 
+.login__error {
+  display: flex;
+  justify-content: center;
+  z-index: 1;
+  top: calc(100% + 6px);
+  left: 36px;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
+  color: #FF0000;
+}
+
 .login__item:-webkit-autofill {
   box-shadow: inset 0 0 0 1000px #F9F9F9;
 }
@@ -103,6 +117,12 @@
   font-style: normal;
   font-weight: 500;
   line-height: normal;
+}
+
+.login__button_inactive {
+  color: #C4C4C4;
+  background: #FFFFFF;
+  border: 1px solid #C4C4C4;
 }
 
 @media screen and (max-width: 550px) {
@@ -156,4 +176,5 @@
   .login__textLink-signup {
     font-size: 12px;
   }
+
 }
