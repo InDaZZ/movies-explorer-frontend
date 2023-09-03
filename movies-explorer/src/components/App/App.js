@@ -93,8 +93,8 @@ function App() {
         if (res.token) {
           console.log(`authorize отработала`)
           console.log(res.token)
-          localStorage.setItem("token", res.token)
           setIsLogged(true)
+          localStorage.setItem("token", res.token)
           navigate("/movies", { replace: true });
           console.log(`пользователь вошел`)
         }
@@ -104,9 +104,11 @@ function App() {
       })
       .finally(() => setIsLoading(false))
   };
-
+console.log(localStorage.getItem("token"))
   function handleTokenCheck() {
-    if (localStorage.getItem('token')) {
+    console.log(11231231132123)
+    let token = localStorage.getItem("token")
+    if (token) {
       setIsLoading(true);
       api.getUserInfo()
         .then((res) => {
@@ -121,14 +123,14 @@ function App() {
             api.getSavedMovies()
               .then(setSavedMovies)
               .catch((error) => {
-                console.log(`Ошибка :( ${error})`)
+                console.log(`Ошибка ${error})`)
               })
           }
           else {
             return
           }
         })
-        .catch((error) => console.log(`Ошибка :( ${error})`))
+        .catch((error) => console.log(`Ошибка ${error})`))
         .finally(() => setIsLoading(false))
     }
   };

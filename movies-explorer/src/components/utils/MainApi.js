@@ -17,7 +17,7 @@ export default class Api {
   register({ name, email, password }) {
     return fetch(this.url + '/signup', {
       method: 'POST',
-
+      credentials: 'include',
       headers: {
         'Content-Type': 'application/json'
       },
@@ -29,7 +29,7 @@ export default class Api {
   authorize({ email, password }) {
     return fetch(this.url + '/signin', {
       method: 'POST',
-      credentials: "include",
+      credentials: 'include',
       headers: {
         'Content-Type': 'application/json'
       },
@@ -41,7 +41,7 @@ export default class Api {
 
   checkToken() {
     return fetch(this.url + '/users/me', {
-      credentials: "include",
+      credentials: 'include',
       headers: {
         'Content-Type': 'application/json',
       }
@@ -51,7 +51,8 @@ export default class Api {
 
   getUserInfo() {
     return fetch(this.url + '/users/me', {
-      credentials: "include",
+     
+      credentials: 'include',
       headers: this.headers
     })
       .then(this._handleResponse)
@@ -61,8 +62,8 @@ export default class Api {
   setUserInfo({ data }) {
     return fetch(this.url + '/users/me',
       {
-        credentials: "include",
         method: 'PATCH',
+        credentials: 'include',
         headers: this.headers,
         body: JSON.stringify(data)
       }
@@ -73,7 +74,7 @@ export default class Api {
   userExit() {
     return fetch(this.url + '/signout', {
       method: 'POST',
-      credentials: "include",
+      credentials: 'include',
       headers: {
         'Content-Type': 'application/json',
       }
@@ -84,7 +85,7 @@ export default class Api {
   getSavedMovies() {
     return fetch(this.url + '/movies', {
       method: 'GET',
-      credentials: "include",
+      credentials: 'include',
       headers: {
         'Content-Type': 'application/json',
       }
@@ -94,8 +95,8 @@ export default class Api {
 
   saveMovie(movie) {
     return fetch(this.url + '/movies', {
+      credentials: 'include',
       method: "POST",
-      credentials: "include",
       headers: {
         "Content-Type": "application/json",
       },
@@ -119,7 +120,7 @@ export default class Api {
   deleteMovie = (movieId) => {
     return fetch(this.url + '/movies/' + movieId, {
       method: "DELETE",
-      credentials: "include",
+      credentials: 'include',
       headers: {
         "Content-Type": "application/json",
       },
@@ -127,16 +128,12 @@ export default class Api {
       .then(this._handleResponse)
 
   };
-
-
-
-
 };
 
 
 
 export const api = new Api({
-  url: 'http://localhost:3000',
+  url: 'https://api.movies-project.nomoredomains.xyz',
   headers: {
     'Content-Type': 'application/json',
   }

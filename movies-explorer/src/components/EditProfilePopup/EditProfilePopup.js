@@ -81,7 +81,7 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser, isLoading }) {
 
   function handleSubmit(evt) {
     evt.preventDefault();
-    
+   
     onUpdateUser({ name: values.name, email: values.email })
   }
 
