@@ -71,7 +71,7 @@ function MoviesCardList({ movies, handleLikeFilm, handleDelteLike, savedMovies, 
   const showMoreItems = () => {
     setVisibleCards((prevValue) => (prevValue + loadMoreCards))
   };
-
+  
   return (
     <>
       {isLoading ? <Preloader /> : isError ? (

@@ -41,7 +41,7 @@ function App() {
   const showFooter = ['/', '/movies', '/saved-movies'].includes(location.pathname);
   const showHeader = ['/', '/movies', '/saved-movies', '/profile', '/signup', '/signin'].includes(location.pathname);
   const [isError, setError] = useState(false);
-  const [isQueryfailed, setQueryfailed] = useState(false)
+  const [isQueryfailed, setQueryfailed] = useState(false);
 
   function showСenteredHeader() {
     if (['/signup', '/signin'].includes(location.pathname)) {
@@ -89,7 +89,6 @@ function App() {
 
     api.authorize(email, password)//
       .then((res) => {
-        console.log(res)
         if (res.token) {
           console.log(`authorize отработала`)
           console.log(res.token)
@@ -104,9 +103,8 @@ function App() {
       })
       .finally(() => setIsLoading(false))
   };
-console.log(localStorage.getItem("token"))
+  
   function handleTokenCheck() {
-    console.log(11231231132123)
     let token = localStorage.getItem("token")
     if (token) {
       setIsLoading(true);
@@ -146,9 +144,7 @@ console.log(localStorage.getItem("token"))
     setIsLoading(true);
     api.register({ name, email, password })
       .then((res) => {
-        console.log(res)
         if (res) {
-          console.log(res)
           handleLoginSubmit({ email, password })
         }
       })
@@ -170,11 +166,12 @@ console.log(localStorage.getItem("token"))
         });
 
       if (filteredMovies.length <= 0) {
-        setIsLoading(false);
         setQueryfailed(true);
+        setIsLoading(false);
+        return
       }
 
-      if (page === "/movies") {
+      if (page === "/movies" || filteredMovies.length > 0) {
         setIsLoading(false);
         setQueryfailed(false);
         setMovies(filteredMovies);
@@ -191,7 +188,7 @@ console.log(localStorage.getItem("token"))
       setIsLoading(false);
       setError(true);
     }
-  }
+  };
 
   function handleLikeFilm(movie) {
     api.saveMovie(movie)
