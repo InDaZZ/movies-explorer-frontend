@@ -27,6 +27,10 @@ function App() {
     message: '',
     error: ''
   });
+  const [isCurrentUserFormState, setCurrentUserFormState] = useState({
+    lastQuery: '',
+    shorts: false,
+  });
   const [isLogged, setIsLogged] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [allMovies, setAllMovies] = useState([]);
@@ -42,6 +46,7 @@ function App() {
   const showHeader = ['/', '/movies', '/saved-movies', '/profile', '/signup', '/signin'].includes(location.pathname);
   const [isError, setError] = useState(false);
   const [isQueryfailed, setQueryfailed] = useState(false);
+  const [SavedMoviesisQueryfailed, setSavedMoviesQueryfailed] = useState(false);
 
   function showСenteredHeader() {
     if (['/signup', '/signin'].includes(location.pathname)) {
@@ -103,7 +108,7 @@ function App() {
       })
       .finally(() => setIsLoading(false))
   };
-  
+
   function handleTokenCheck() {
     let token = localStorage.getItem("token")
     if (token) {
@@ -113,7 +118,10 @@ function App() {
           if (res) {
             setCurrentUser(res)
             setIsLogged(true)
-            navigate("/movies", { replace: true });
+            if (currLocation === '/') { 
+              navigate("/movies", { replace: true });
+            }
+            else {navigate(currLocation, { replace: true });}
             moviesBeatApi
               .getMovies()
               .then(setAllMovies)
@@ -154,10 +162,10 @@ function App() {
       .finally(() => setIsLoading(false))
   };
 
-  function filterMovies(query, page, moviesArr, duration) {
+  function filterMovies(query, page, moviesArr, duration, checked) {
     const lowerCase = query.toLowerCase();
     setIsLoading(true);
-
+    console.log(query)
     if (moviesArr.length > 0) {
       const filteredMovies =
         moviesArr.filter(function searchShorts(movie) {
@@ -165,22 +173,45 @@ function App() {
             (movie.nameEN.toLowerCase().indexOf(lowerCase) !== -1 && movie.duration <= duration)
         });
 
-      if (filteredMovies.length <= 0) {
+      if (moviesArr.length > 0 && checked) {
+        const filteredMovies =
+          moviesArr.filter(function searchShorts(movie) {
+            return (movie.nameRU.toLowerCase().indexOf(lowerCase) !== -1 && movie.duration <= duration) ||
+              (movie.nameEN.toLowerCase().indexOf(lowerCase) !== -1 && movie.duration <= duration)
+          })
+      };
+
+
+
+      if (filteredMovies.length <= 0 && page === "/movies") {
         setQueryfailed(true);
         setIsLoading(false);
         return
       }
 
-      if (page === "/movies" || filteredMovies.length > 0) {
+      if (filteredMovies.length <= 0 && page === "/saved-movies") {
+        setSavedMoviesQueryfailed(true);
+        setIsLoading(false);
+        return
+      }
+
+      if (page === "/movies" && filteredMovies.length > 0) {
+        setCurrentUserFormState({ lastQuery: query })
         setIsLoading(false);
         setQueryfailed(false);
         setMovies(filteredMovies);
+        console.log(query)
         localStorage.setItem(`searchmovies`, JSON.stringify(filteredMovies));
+        localStorage.setItem(`searchmoviesquery`, JSON.stringify(query));
+        setCurrentUserFormState({
+          lastQuery: query
+        })
       }
 
-      if (page === "/saved-movies") {
+      if (page === "/saved-movies" && filteredMovies.length > 0) {
+        console.log(filteredMovies.length)
         setIsLoading(false);
-        setQueryfailed(false);
+        setSavedMoviesQueryfailed(false);
         setSavedMovies(filteredMovies);
       }
     }
@@ -190,10 +221,12 @@ function App() {
     }
   };
 
-  function handleLikeFilm(movie) {
+
+  function handleLikeFilm(movie, setIsActive) {
     api.saveMovie(movie)
       .then((res) => {
         setSavedMovies([res, ...savedMovies])
+        setIsActive((prevState) => !prevState);
       })
       .catch((error) => {
         console.log(`Ошибка :( ${error})`)
@@ -251,7 +284,7 @@ function App() {
       })
   };
   return (
-    <CurrentUserContext.Provider value={{ isCurrentUser, isCurrentUserRegistrErr, isCurrentUserProfileChangeStatus, setCurrentUserProfileChangeStatus }}>
+    <CurrentUserContext.Provider value={{ isCurrentUser, isCurrentUserRegistrErr, isCurrentUserProfileChangeStatus, setCurrentUserProfileChangeStatus, isCurrentUserFormState, setCurrentUserFormState }}>
       <div className='page'>
         {showHeader && <Header isMainHeader={isMainHeader} isСenteredHeader={isСenteredHeader} openSeidMenu={openSeidMenu} isLogged={isLogged}></Header>}
         <Routes>
@@ -261,7 +294,7 @@ function App() {
           <Route path='/' element={<Main />} />
           <Route element={<ProtectedRoute isLogged={isLogged} />}>
             <Route path='/movies' element={<Movies movies={movies} savedMovies={savedMovies} handleLikeFilm={handleLikeFilm} filterMovies={filterMovies} setMovies={setMovies} moviesArr={allMovies} handleDelteLikeTwo={handleDelteLikeTwo} isLoading={isLoading} isError={isError} isQueryfailed={isQueryfailed} />} />
-            <Route path='/saved-movies' element={<SavedMovies movies={savedMovies} handleDelteLike={handleDelteLike} filterMovies={filterMovies} moviesArr={savedMovies} isLoading={isLoading} isQueryfailed={isQueryfailed} />} />
+            <Route path='/saved-movies' element={<SavedMovies movies={savedMovies} handleDelteLike={handleDelteLike} filterMovies={filterMovies} moviesArr={savedMovies} isLoading={isLoading} SavedMoviesisQueryfailed={SavedMoviesisQueryfailed} />} />
             <Route path='/profile' element={<Profile exit={exit} openPopup={openPopup} />} />
           </Route>
         </Routes>

@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import './moviescard.css';
-import SavedMovies from '../SavedMovies/SavedMovies';
 
 function MoviesCard({ movie, handleLikeFilm, handleDelteLike, savedMovies, handleDelteLikeTwo, key }) {
   const [isActive, setIsActive] = useState(false);
@@ -27,10 +26,6 @@ function MoviesCard({ movie, handleLikeFilm, handleDelteLike, savedMovies, handl
 
   }, [currLocation === '/movies'])
 
-
-
-
-
   useEffect(() => {
     if (currLocation === '/saved-movies') {
       setSavedMovies(true)
@@ -39,15 +34,15 @@ function MoviesCard({ movie, handleLikeFilm, handleDelteLike, savedMovies, handl
   }, [location.pathname === '/saved-movies'])
 
   const handleLikeClick = () => {
-    setIsActive((prevState) => !prevState);
-    handleLikeFilm(movie)
+    //setIsActive((prevState) => !prevState);
+    handleLikeFilm(movie, setIsActive)
   };
 
   const handleDeletClick = () => {
     handleDelteLike(movie._id)
   };
 
-  const handleDeletClicSssssss = () => {
+  const handleDeletLike = () => {
     setIsActive((prevState) => !prevState);
     handleDelteLikeTwo(savedMovies, movie.id)
   };
@@ -68,7 +63,7 @@ function MoviesCard({ movie, handleLikeFilm, handleDelteLike, savedMovies, handl
           </div>
           <div className="moviescard__like-container">
             <button type="button" className={isSavedMovies ? (`moviescard__button-delet-like`) : (`moviescard__button-like ${isActive ? "moviescard__button-like_active" : ""}`)}
-              onClick={isSavedMovies ? handleDeletClick : (isActive ? handleDeletClicSssssss : handleLikeClick)}></button>
+              onClick={isSavedMovies ? handleDeletClick : (isActive ? handleDeletLike : handleLikeClick)}></button>
           </div>
         </div>
       </div>

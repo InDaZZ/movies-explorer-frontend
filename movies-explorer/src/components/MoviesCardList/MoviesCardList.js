@@ -6,7 +6,7 @@ import MoviesCard from '../MoviesCard/MoviesCard.js';
 import Preloader from '../Preloader/Preloader.js';
 import { DEVICE_PARAMETERS } from '../utils/Constants.js';
 
-function MoviesCardList({ movies, handleLikeFilm, handleDelteLike, savedMovies, handleDelteLikeTwo, isLoading, isError, isQueryfailed }) {
+function MoviesCardList({ movies, handleLikeFilm, handleDelteLike, savedMovies, handleDelteLikeTwo, isLoading, isError, isQueryfailed, SavedMoviesisQueryfailed }) {
   const location = useLocation();
   const currLocation = location.pathname.toLowerCase();
   const [isActive, setIsActive] = useState(false);
@@ -64,14 +64,14 @@ function MoviesCardList({ movies, handleLikeFilm, handleDelteLike, savedMovies, 
             );
           });
       }
-    
+
     }
   };
 
   const showMoreItems = () => {
     setVisibleCards((prevValue) => (prevValue + loadMoreCards))
   };
-  
+
   return (
     <>
       {isLoading ? <Preloader /> : isError ? (
@@ -83,11 +83,15 @@ function MoviesCardList({ movies, handleLikeFilm, handleDelteLike, savedMovies, 
         <p>
           Ничего не найдено.
         </p>
+      ) : SavedMoviesisQueryfailed ? (
+      <p>
+        Ничего не найдено.
+      </p>
       ) : <>
         <section className='moviescardlist'>
           {renderMovies(visibleCards)}
-        </section>
-        {location.pathname !== '/saved-movies' && ((movies.length !== 0) && (movies.length >= 16)) && <button className='movies__button-more' type='button' onClick={showMoreItems}>Ещё</button>}
+        </section >
+        {location.pathname !== '/saved-movies' && ((movies.length !== 0) && (movies.length >= 16)) && (movies.length > visibleCards) && <button className='movies__button-more' type='button' onClick={showMoreItems}>Ещё</button>}
       </>}
     </>
   )

@@ -1,12 +1,12 @@
-import React from 'react';
-import { useState } from "react";
+import React, { useContext, useState, useEffect } from 'react';
+import { CurrentUserContext } from '../../context/userContexts.js';
 import Popup from '../Popup/Popup.js';
 import './editprofilepopup.css';
-import { REGEXP_EMAIL,REGEXP_USER_NAME } from '../utils/Constants.js';
+import { REGEXP_EMAIL, REGEXP_USER_NAME } from '../utils/Constants.js';
 import useFormAndValidation from '../Validate/Validate.js'
-//import { CurrentUserContext } from '../contexts/CurrentUserContext.js'
 
 function EditProfilePopup({ isOpen, onClose, onUpdateUser, isLoading }) {
+  const { isCurrentUser } = useContext(CurrentUserContext);
 
 
   const {
@@ -19,21 +19,18 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser, isLoading }) {
     setValid,
     setErrors
   } = useFormAndValidation();
-
-  //const [name, setName] = useState('');
-
-  //const [email, setEmail] = useState('');
-
-  //React.useEffect(() => {
-  //  setName(currentUser.name);
-  //  setEmail(currentUser.about);
-  // }, [currentUser,isOpen]); 
+  
+  useEffect(() => {
+    setValues({
+      name: isCurrentUser.name,
+      email: isCurrentUser.email
+    })
+  }, [isOpen])
 
   function handleChangeName(evt) {
-    handleChange(evt);
-
     const { name, value } = evt.target;
 
+    handleChange(evt);
     if (name === 'name' && REGEXP_USER_NAME.test(value)) {
       setValid(false);
       setErrors((errors) => {
@@ -42,17 +39,17 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser, isLoading }) {
           name: 'Может содержать латиницу, кириллицу, пробел или дефис.',
         };
       });
-  }
-  if (value.length <= 0) {
-    setValid(false);
-    setErrors((errors) => {
-      return {
-        ...errors,
-        name: 'Это поле обязательно',
-      };
-    });
+    }
+    if (value.length <= 0) {
+      setValid(false);
+      setErrors((errors) => {
+        return {
+          ...errors,
+          name: 'Это поле обязательно',
+        };
+      });
+    };
   };
-};
 
   function handleChangeEmail(evt) {
     handleChange(evt);
@@ -67,25 +64,23 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser, isLoading }) {
           email: 'Пример правильной почты: name@mail.com/ru',
         };
       });
-  }
-  if (value.length <= 0) {
-    setValid(false);
-    setErrors((errors) => {
-      return {
-        ...errors,
-        email: 'Это поле обязательно',
-      };
-    }); 
+    }
+    if (value.length <= 0) {
+      setValid(false);
+      setErrors((errors) => {
+        return {
+          ...errors,
+          email: 'Это поле обязательно',
+        };
+      });
+    };
   };
-};
 
   function handleSubmit(evt) {
     evt.preventDefault();
-   
+
     onUpdateUser({ name: values.name, email: values.email })
   }
-
-
 
   return (
     <Popup popupId="popupProfile" formName="editProfile" formId="popupFormProfile" title="Редактировать профиль" buttonText={isLoading ? 'Сохранение...' : 'Сохранить'} isOpen={isOpen} onClose={onClose} onSubmit={handleSubmit} isValid={isValid}>
