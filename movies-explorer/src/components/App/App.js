@@ -22,6 +22,7 @@ function App() {
 
   const [isCurrentUser, setCurrentUser] = useState({});
   const [isCurrentUserRegistrErr, setCurrentUserRegistrEr] = useState('');
+  const [isCurrentUserLoginErr, setCurrentUserLoginErr] = useState('');
   const [isCurrentUserProfileChangeStatus, setCurrentUserProfileChangeStatus] = useState({
     state: false,
     message: '',
@@ -34,6 +35,7 @@ function App() {
   const [isLogged, setIsLogged] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [allMovies, setAllMovies] = useState([]);
+  const [allSavedMovies, setAllSavedMovies] = useState([]);
   const [movies, setMovies] = useState([]);
   const [savedMovies, setSavedMovies] = useState([]);
   const location = useLocation();
@@ -103,8 +105,9 @@ function App() {
           console.log(`пользователь вошел`)
         }
       })
-      .catch((error) => {
-        console.log(`Ошибка :( ${error})`)
+      .catch((res) => {
+        setCurrentUserLoginErr(res)
+        console.log(`Ошибка :( ${res})`)
       })
       .finally(() => setIsLoading(false))
   };
@@ -118,16 +121,20 @@ function App() {
           if (res) {
             setCurrentUser(res)
             setIsLogged(true)
-            if (currLocation === '/') { 
+            if (currLocation === '/') {
               navigate("/movies", { replace: true });
             }
-            else {navigate(currLocation, { replace: true });}
+            else { navigate(currLocation, { replace: true }); }
             moviesBeatApi
               .getMovies()
               .then(setAllMovies)
               .catch(console.error);
             api.getSavedMovies()
-              .then(setSavedMovies)
+              .then((res) => {
+                setSavedMovies(res)
+                setAllSavedMovies(res)
+              })
+
               .catch((error) => {
                 console.log(`Ошибка ${error})`)
               })
@@ -196,11 +203,11 @@ function App() {
       }
 
       if (page === "/movies" && filteredMovies.length > 0) {
+        console.log(movies)
         setCurrentUserFormState({ lastQuery: query })
         setIsLoading(false);
         setQueryfailed(false);
         setMovies(filteredMovies);
-        console.log(query)
         localStorage.setItem(`searchmovies`, JSON.stringify(filteredMovies));
         localStorage.setItem(`searchmoviesquery`, JSON.stringify(query));
         setCurrentUserFormState({
@@ -218,6 +225,7 @@ function App() {
     else {
       setIsLoading(false);
       setError(true);
+      console.log(12313123)
     }
   };
 
@@ -243,11 +251,12 @@ function App() {
       })
   }
 
-  function handleDelteLikeTwo(savedMoviesArr, movieID) {
+  function handleDelteLikeTwo(savedMoviesArr, movieID, setIsActive) {
     const deletedMovies = savedMoviesArr.find((item) => item.movieId === movieID)
 
     api.deleteMovie(deletedMovies._id)
       .then((res) => {
+        setIsActive((prevState) => !prevState);
         setSavedMovies((state) => state.filter((film) => film._id !== deletedMovies._id))
       })
       .catch((error) => {
@@ -284,7 +293,7 @@ function App() {
       })
   };
   return (
-    <CurrentUserContext.Provider value={{ isCurrentUser, isCurrentUserRegistrErr, isCurrentUserProfileChangeStatus, setCurrentUserProfileChangeStatus, isCurrentUserFormState, setCurrentUserFormState }}>
+    <CurrentUserContext.Provider value={{ isCurrentUser, isCurrentUserRegistrErr, isCurrentUserProfileChangeStatus, setCurrentUserProfileChangeStatus, isCurrentUserFormState, setCurrentUserFormState, isCurrentUserLoginErr }}>
       <div className='page'>
         {showHeader && <Header isMainHeader={isMainHeader} isСenteredHeader={isСenteredHeader} openSeidMenu={openSeidMenu} isLogged={isLogged}></Header>}
         <Routes>
@@ -294,7 +303,7 @@ function App() {
           <Route path='/' element={<Main />} />
           <Route element={<ProtectedRoute isLogged={isLogged} />}>
             <Route path='/movies' element={<Movies movies={movies} savedMovies={savedMovies} handleLikeFilm={handleLikeFilm} filterMovies={filterMovies} setMovies={setMovies} moviesArr={allMovies} handleDelteLikeTwo={handleDelteLikeTwo} isLoading={isLoading} isError={isError} isQueryfailed={isQueryfailed} />} />
-            <Route path='/saved-movies' element={<SavedMovies movies={savedMovies} handleDelteLike={handleDelteLike} filterMovies={filterMovies} moviesArr={savedMovies} isLoading={isLoading} SavedMoviesisQueryfailed={SavedMoviesisQueryfailed} />} />
+            <Route path='/saved-movies' element={<SavedMovies movies={savedMovies} handleDelteLike={handleDelteLike} filterMovies={filterMovies} moviesArr={allSavedMovies} isLoading={isLoading} SavedMoviesisQueryfailed={SavedMoviesisQueryfailed} />} />
             <Route path='/profile' element={<Profile exit={exit} openPopup={openPopup} />} />
           </Route>
         </Routes>

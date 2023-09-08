@@ -114,7 +114,7 @@ function Registr({ onSubmit }) {
             <span className="registr__error-message">{errors.password}.</span>
             <div className="registr__button-container">
               <span className="registr__error-message registr__error-message_submit">{isCurrentUserRegistrErr}.</span>
-              <button type="submit" className="registr__button">Зарегистрироваться</button>
+              <button type="submit" className={`registr__button ${isValid ? "" : "registr__button_inactive"}`} disabled={!isValid}>Зарегистрироваться</button>
             </div>
           </form>
           <Link to="/signin" className="registr__textLink">Уже зарегистрированы? <span className="registr__textLink-signin">Войти</span></Link>

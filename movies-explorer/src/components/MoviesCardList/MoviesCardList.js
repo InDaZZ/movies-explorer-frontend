@@ -6,10 +6,11 @@ import MoviesCard from '../MoviesCard/MoviesCard.js';
 import Preloader from '../Preloader/Preloader.js';
 import { DEVICE_PARAMETERS } from '../utils/Constants.js';
 
-function MoviesCardList({ movies, handleLikeFilm, handleDelteLike, savedMovies, handleDelteLikeTwo, isLoading, isError, isQueryfailed, SavedMoviesisQueryfailed }) {
+function MoviesCardList({ movies, handleLikeFilm, handleDelteLike, savedMovies, handleDelteLikeTwo, isLoading, isError, isQueryfailed, SavedMoviesisQueryfailed, }) {
   const location = useLocation();
   const currLocation = location.pathname.toLowerCase();
   const [isActive, setIsActive] = useState(false);
+  const lastQueryMovies = JSON.parse(localStorage.getItem(`searchmovies`));
 
   useEffect(() => {
     handleResize();
@@ -40,21 +41,19 @@ function MoviesCardList({ movies, handleLikeFilm, handleDelteLike, savedMovies, 
     }
 
   };
-
-
+  
   function renderMovies(loadMoreCards) {
     if (movies.length > 0) {
       return movies
         .slice(0, loadMoreCards)
         .map((movie) => {
           return (
+
             <MoviesCard key={movie.id} movie={movie} handleLikeFilm={handleLikeFilm} handleDelteLike={handleDelteLike} savedMovies={savedMovies} handleDelteLikeTwo={handleDelteLikeTwo} />
           );
         });
     }
-    if (JSON.parse(localStorage.getItem(`searchmovies`)) && currLocation === '/movies') {
-      const lastQueryMovies = JSON.parse(localStorage.getItem(`searchmovies`));
-
+    if (lastQueryMovies) {
       if (lastQueryMovies.length > 0) {
         return lastQueryMovies
           .slice(0, loadMoreCards)
@@ -64,7 +63,16 @@ function MoviesCardList({ movies, handleLikeFilm, handleDelteLike, savedMovies, 
             );
           });
       }
+    };
+    if (movies.length > 0) {
+      return movies
+        .slice(0, loadMoreCards)
+        .map((movie) => {
+          return (
 
+            <MoviesCard key={movie.id} movie={movie} handleLikeFilm={handleLikeFilm} handleDelteLike={handleDelteLike} savedMovies={savedMovies} handleDelteLikeTwo={handleDelteLikeTwo} />
+          );
+        });
     }
   };
 
@@ -84,9 +92,9 @@ function MoviesCardList({ movies, handleLikeFilm, handleDelteLike, savedMovies, 
           Ничего не найдено.
         </p>
       ) : SavedMoviesisQueryfailed ? (
-      <p>
-        Ничего не найдено.
-      </p>
+        <p>
+          Ничего не найдено.
+        </p>
       ) : <>
         <section className='moviescardlist'>
           {renderMovies(visibleCards)}

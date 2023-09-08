@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import './moviescard.css';
 
-function MoviesCard({ movie, handleLikeFilm, handleDelteLike, savedMovies, handleDelteLikeTwo, key }) {
+function MoviesCard({ movie, handleLikeFilm, handleDelteLike, savedMovies, handleDelteLikeTwo, key , isActivelike }) {
   const [isActive, setIsActive] = useState(false);
   const location = useLocation();
   const currLocation = location.pathname;
@@ -12,9 +12,10 @@ function MoviesCard({ movie, handleLikeFilm, handleDelteLike, savedMovies, handl
   const openTrailerLink = () => {
     window.open(`${movie.trailerLink}`);
   };
-
+  
 
   useEffect(() => {
+    
     if (currLocation === '/movies') {
       const savedMoviesId = savedMovies.map((movie) => {
         return movie.movieId
@@ -27,7 +28,7 @@ function MoviesCard({ movie, handleLikeFilm, handleDelteLike, savedMovies, handl
       }
     }
 
-  }, [currLocation === '/movies',])
+  }, [currLocation === '/movies',savedMovies])
 
   useEffect(() => {
     if (currLocation === '/saved-movies') {
@@ -46,8 +47,8 @@ function MoviesCard({ movie, handleLikeFilm, handleDelteLike, savedMovies, handl
   };
 
   const handleDeletLike = () => {
-    setIsActive((prevState) => !prevState);
-    handleDelteLikeTwo(savedMovies, movie.id)
+    //setIsActive((prevState) => !prevState);
+    handleDelteLikeTwo(savedMovies, movie.id, setIsActive)
   };
 
   function filmDuration(minutes) {

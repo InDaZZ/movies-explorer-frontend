@@ -120,6 +120,12 @@
   line-height: normal;
 }
 
+.registr__button_inactive {
+  color: #C4C4C4;
+  background: #FFFFFF;
+  border: 1px solid #C4C4C4;
+}
+
 
 @media screen and (max-width: 550px) {
   .registr__button {

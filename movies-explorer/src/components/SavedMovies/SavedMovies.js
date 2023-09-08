@@ -9,8 +9,8 @@ function SavedMovies({ movies, handleDelteLike, filterMovies, moviesArr, SavedMo
     <>
 
       <section className='savedmovies'>
-        <SearchForm filterMovies={filterMovies} moviesArr={moviesArr}></SearchForm>
-        <MoviesCardList parent='SavedMovies' movies={movies} handleDelteLike={handleDelteLike} SavedMoviesisQueryfailed={SavedMoviesisQueryfailed}></MoviesCardList>
+        <SearchForm filterMovies={filterMovies} moviesArr={moviesArr} movies={movies}></SearchForm>
+        <MoviesCardList parent='SavedMovies' movies={movies} handleDelteLike={handleDelteLike} SavedMoviesisQueryfailed={SavedMoviesisQueryfailed} ></MoviesCardList>
       </section>
 
     </>

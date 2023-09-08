@@ -1,11 +1,12 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import './login.css';
 import { Link } from "react-router-dom";
 import { REGEXP_EMAIL } from '../utils/Constants.js';
-import useFormAndValidation from '../Validate/Validate.js'
+import useFormAndValidation from '../Validate/Validate.js';
+import { CurrentUserContext } from '../../context/userContexts.js';
 
 function Login({ onSubmit }) {
-
+  const { isCurrentUserLoginErr } = useContext(CurrentUserContext);
   const {
     values,
     errors,
@@ -80,7 +81,10 @@ function Login({ onSubmit }) {
               id="password" defaultValue="" required onChange={handleChangePassword} />
             <span className="login__error">{errors.password}</span>
           </label>
-          <button disabled={!isValid} type="submit" className={`login__button ${isValid ? "" : "login__button_inactive"}`} onClick={handleSubmit}>Войти</button>
+          <div className="login__button-container">
+            <span className="login__error login__error-message_submit">{isCurrentUserLoginErr}</span>
+            <button disabled={!isValid} type="submit" className={`login__button ${isValid ? "" : "login__button_inactive"}`} onClick={handleSubmit}>Войти</button>
+          </div>
         </form>
         <Link to="/signup" className="login__textLink">Ещё не зарегистрированы?<span className="login__textLink-signup">Регистрация</span></Link>
       </div>

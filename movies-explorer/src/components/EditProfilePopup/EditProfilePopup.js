@@ -19,13 +19,18 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser, isLoading }) {
     setValid,
     setErrors
   } = useFormAndValidation();
-  
+
   useEffect(() => {
     setValues({
       name: isCurrentUser.name,
       email: isCurrentUser.email
     })
-  }, [isOpen])
+  }, [isOpen]);
+  useEffect(() => {
+    if (values.email === isCurrentUser.email && values.name === isCurrentUser.name) {
+      setValid(false)
+    }
+  }, [values])
 
   function handleChangeName(evt) {
     const { name, value } = evt.target;
@@ -49,6 +54,7 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser, isLoading }) {
         };
       });
     };
+
   };
 
   function handleChangeEmail(evt) {
@@ -74,11 +80,11 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser, isLoading }) {
         };
       });
     };
+
   };
 
   function handleSubmit(evt) {
     evt.preventDefault();
-
     onUpdateUser({ name: values.name, email: values.email })
   }
 

@@ -4,47 +4,66 @@ import { CurrentUserContext } from '../../context/userContexts.js';
 import './searchform.css';
 import iconSearch from '../../images/iconsearch.svg'
 
-function SearchForm({ filterMovies, moviesArr, isCurrentUserFormState }) {
+function SearchForm({ filterMovies, moviesArr, movies, isCurrentUserFormState }) {
   const { setCurrentUserFormState } = useContext(CurrentUserContext);
   const [isQuery, setQuery] = useState('')
   const [checked, setChecked] = useState(false);
   const [isDuration, setDuration] = useState(Infinity)
   const location = useLocation();
   const currLocation = location.pathname.toLowerCase()
-  //const lastQuery = localStorage.getItem(`searchmoviesquery`).replace(/"/g, '');
 
-  //value={((localStorage.getItem(`searchmoviesquery`)) && currLocation === '/movies' && lastQuery)}
-  //(lastQuery && currLocation === '/movies' && lastQuery)
   useEffect(() => {
 
     if (localStorage.getItem(`searchmoviesquery`) && currLocation === '/movies') {
       const lastQuery = localStorage.getItem(`searchmoviesquery`).replace(/"/g, '');
       setQuery(lastQuery)
     }
-    if (localStorage.getItem(`checkboxState`) === 'true') {
+    if (localStorage.getItem(`checkboxState`) === 'true' && currLocation === '/movies') {
       setChecked(true)
-    }
-    if (currLocation === '/saved-movies') {
-      setQuery('')
     }
     else {
       return
     }
   }, [currLocation === '/movies']);
 
+
+  useEffect(() => { 
+
+    if (localStorage.getItem(`checkboxStateSavedMovies`) === 'true' && currLocation === '/saved-movies') {
+      setChecked(true)
+    }
+    else {
+      return
+    }
+  },[currLocation === '/saved-movies']);
+
   function shortsMoviesSwitch() {
 
-    if (checked === false) {
+    if (checked === false && currLocation === '/movies') {
       setChecked(prevState => !prevState)
       setDuration(40)
-      filterMovies(isQuery, currLocation, moviesArr, 40, checked);
+      filterMovies(isQuery, currLocation, moviesArr, 40);
+      
       localStorage.setItem(`checkboxState`, JSON.stringify(true));
     }
-    if (checked === true) {
+    if (checked === true && currLocation === '/movies') {
       setChecked(prevState => !prevState)
       setDuration(Infinity)
       filterMovies(isQuery, currLocation, moviesArr, Infinity, checked);
+      
       localStorage.setItem(`checkboxState`, JSON.stringify(false));
+    }
+    if (checked === false && currLocation === '/saved-movies') {
+      setChecked(prevState => !prevState)
+      setDuration(40)
+      filterMovies(isQuery, currLocation, moviesArr, 40);
+      localStorage.setItem(`checkboxStateSavedMovies`, JSON.stringify(true));
+    }
+    if (checked === true && currLocation === '/saved-movies') {
+      setChecked(prevState => !prevState)
+      setDuration(Infinity)
+      filterMovies(isQuery, currLocation, moviesArr, Infinity, checked);
+      localStorage.setItem(`checkboxStateSavedMovies`, JSON.stringify(false));
     }
   }
 
