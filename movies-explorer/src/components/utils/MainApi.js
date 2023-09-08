@@ -133,7 +133,7 @@ export default class Api {
 
 
 export const api = new Api({
-  url: 'https://api.movies-project.nomoredomains.xyz',
+  url: 'http://localhost:3000',
   headers: {
     'Content-Type': 'application/json',
   }

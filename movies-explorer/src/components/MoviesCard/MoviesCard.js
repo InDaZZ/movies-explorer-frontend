@@ -22,9 +22,12 @@ function MoviesCard({ movie, handleLikeFilm, handleDelteLike, savedMovies, handl
       if (savedMoviesId.includes(movie.id)) {
         setIsActive(true)
       }
+      else {
+        return
+      }
     }
 
-  }, [currLocation === '/movies'])
+  }, [currLocation === '/movies',])
 
   useEffect(() => {
     if (currLocation === '/saved-movies') {

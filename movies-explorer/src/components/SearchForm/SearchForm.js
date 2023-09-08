@@ -36,13 +36,13 @@ function SearchForm({ filterMovies, moviesArr, isCurrentUserFormState }) {
 
     if (checked === false) {
       setChecked(prevState => !prevState)
-      //setDuration(40)
+      setDuration(40)
       filterMovies(isQuery, currLocation, moviesArr, 40, checked);
       localStorage.setItem(`checkboxState`, JSON.stringify(true));
     }
     if (checked === true) {
       setChecked(prevState => !prevState)
-      //setDuration(Infinity)
+      setDuration(Infinity)
       filterMovies(isQuery, currLocation, moviesArr, Infinity, checked);
       localStorage.setItem(`checkboxState`, JSON.stringify(false));
     }
