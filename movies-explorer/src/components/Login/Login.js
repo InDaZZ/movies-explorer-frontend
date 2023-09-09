@@ -59,18 +59,17 @@ function Login({ onSubmit }) {
 
   function handleSubmit(evt) {
     evt.preventDefault();
-    console.log({ password: values.password, email: values.email })
     onSubmit({ email: values.email, password: values.password })
   }
-
+ console.log(errors)
   return (
     <section className="login">
       <div className="login__login-container">
-        <form className="login__form" name="refistrForm" id="refistrForm">
+        <form autoComplete="off" className="login__form" name="refistrForm" id="refistrForm">
           <h1 className="login__heading">Рады видеть!</h1>
           <label htmlFor="userEmail" className="login__field">
             <h3 className="login__item-title">E-mail</h3>
-            <input type="email" className="login__item login__item_type_name" placeholder="Email" name="email"
+            <input type="email"  className="login__item login__item_type_name" placeholder="Email" name="email"
               id="userEmail" value={values.email || ''} minLength="2" maxLength="30" required onChange={handleChangeEmail} />
 
           </label>

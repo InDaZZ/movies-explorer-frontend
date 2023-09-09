@@ -53,8 +53,11 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser, isLoading }) {
           name: 'Это поле обязательно',
         };
       });
-    };
-
+    }
+    if (errors.name === '') {
+      setValid(true)
+    }
+      
   };
 
   function handleChangeEmail(evt) {
