@@ -18,13 +18,20 @@ function Registr({ onSubmit }) {
     setValid,
     setErrors,
   } = useFormAndValidation();
-  
+
+  useEffect(() => { 
+    if(errors.name || errors.email || errors.password){
+      setValid(false)
+    }
+    else {setValid(true)}
+  },[isValid,errors.name, errors.email, errors.password])
+
   function handleChangeName(evt) {
     handleChange(evt);
 
     const { name, value } = evt.target;
-
-    if (name === 'name' && REGEXP_USER_NAME.test(value)) {
+console.log(isValid)
+    if (REGEXP_USER_NAME.test(value)) {
       setValid(false)
       setErrors((errors) => {
         return {
@@ -33,6 +40,7 @@ function Registr({ onSubmit }) {
         };
       });
     }
+   
     if (value.length <= 0) {
       setValid(false)
       setErrors((errors) => {
@@ -42,9 +50,6 @@ function Registr({ onSubmit }) {
         };
       });
     }
-    if (errors.name === '') {
-      console.log('имя валиден')
-    }
   };
 
   function handleChangeEmail(evt) {
@@ -52,7 +57,7 @@ function Registr({ onSubmit }) {
 
     const { name, value } = evt.target;
 
-    if (name === 'email' && !REGEXP_EMAIL.test(value)) {
+    if (!REGEXP_EMAIL.test(value)) {
       setValid(false)
       setErrors((errors) => {
         return {
@@ -61,6 +66,7 @@ function Registr({ onSubmit }) {
         };
       });
     }
+    
     if (value.length <= 0) {
       setValid(false)
       setErrors((errors) => {
@@ -86,9 +92,6 @@ function Registr({ onSubmit }) {
           password: 'Это поле обязательно',
         };
       });
-    }
-    if (errors.password === '') {
-      console.log('пароль валиден')
     }
   };
 
