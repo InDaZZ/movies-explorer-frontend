@@ -61,7 +61,7 @@ function Login({ onSubmit }) {
     evt.preventDefault();
     onSubmit({ email: values.email, password: values.password })
   }
- console.log(errors)
+ 
   return (
     <section className="login">
       <div className="login__login-container">

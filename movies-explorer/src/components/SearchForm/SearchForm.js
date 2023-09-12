@@ -4,7 +4,7 @@ import { CurrentUserContext } from '../../context/userContexts.js';
 import './searchform.css';
 import iconSearch from '../../images/iconsearch.svg'
 
-function SearchForm({ filterMovies, moviesArr, movies, isCurrentUserFormState }) {
+function SearchForm({ filterMovies, moviesArr, movies, isCurrentUserFormState, isError, isQueryfailed, reloadSavedMovies, setSavedMoviesQueryfailed }) {
   const { setCurrentUserFormState } = useContext(CurrentUserContext);
   const [isQuery, setQuery] = useState('')
   const [checked, setChecked] = useState(false);
@@ -19,6 +19,7 @@ function SearchForm({ filterMovies, moviesArr, movies, isCurrentUserFormState })
       setQuery(lastQuery)
     }
     if (localStorage.getItem(`checkboxState`) === 'true' && currLocation === '/movies') {
+      setDuration(40)
       setChecked(true)
     }
     else {
@@ -27,30 +28,47 @@ function SearchForm({ filterMovies, moviesArr, movies, isCurrentUserFormState })
   }, [currLocation === '/movies']);
 
 
-  useEffect(() => { 
-
-    if (localStorage.getItem(`checkboxStateSavedMovies`) === 'true' && currLocation === '/saved-movies') {
-      setChecked(true)
+  useEffect(() => {
+    if (currLocation === '/saved-movies' && isQuery === '') {
+      setSavedMoviesQueryfailed(false)
+      reloadSavedMovies(true)
     }
+
+    if (currLocation === '/saved-movies' && isQuery !== '') {
+      reloadSavedMovies(false)
+    }
+
     else {
       return
     }
-  },[currLocation === '/saved-movies']);
+  }, [currLocation === '/saved-movies', isQuery]);
 
   function shortsMoviesSwitch() {
-
+    if (checked === false && currLocation === '/movies' && movies.length === 0) {
+      setChecked(prevState => !prevState)
+      setDuration(40)
+      console.log('i yoy')
+      localStorage.setItem(`checkboxState`, JSON.stringify(true));
+      return
+    }
+    if (checked === true && currLocation === '/movies' && movies.length === 0) {
+      setChecked(prevState => !prevState)
+      setDuration(Infinity)
+      localStorage.setItem(`checkboxState`, JSON.stringify(false));
+      return
+    }
     if (checked === false && currLocation === '/movies') {
       setChecked(prevState => !prevState)
       setDuration(40)
       filterMovies(isQuery, currLocation, moviesArr, 40);
-      
+
       localStorage.setItem(`checkboxState`, JSON.stringify(true));
     }
     if (checked === true && currLocation === '/movies') {
       setChecked(prevState => !prevState)
       setDuration(Infinity)
       filterMovies(isQuery, currLocation, moviesArr, Infinity, checked);
-      
+
       localStorage.setItem(`checkboxState`, JSON.stringify(false));
     }
     if (checked === false && currLocation === '/saved-movies') {
@@ -69,6 +87,9 @@ function SearchForm({ filterMovies, moviesArr, movies, isCurrentUserFormState })
 
   function handleSubmit(evt) {
     evt.preventDefault()
+
+    //localStorage.setItem(`searchmoviesqueryIsError`, JSON.stringify(isError));
+    //localStorage.setItem(`searchmoviesqueryisQueryfailed`, JSON.stringify(isQueryfailed));
     filterMovies(isQuery, currLocation, moviesArr, isDuration, checked);
   }
 

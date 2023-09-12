@@ -8,16 +8,13 @@ const useFormAndValidation = (initialValues = {}, initialErrors = {}, initialVal
   const [values, setValues] = useState(initialValues);
   const [errors, setErrors] = useState(initialErrors);
   const [isValid, setValid] = useState(initialValid);
-  const [isValidinp, setValidinp] = useState({});
   
   const handleChange = (evt) => {
-    const input = evt.target;
     const { name, value } = evt.target;
     setErrors({ ...errors, [name]: evt.target.validationMessage });
     setValues({ ...values, [name]: value });
     
     if (currLocation === '/signin' && errors.email === '') {
-      console.log(123131312)
       setValid(evt.target.closest('form').checkValidity());
      }
     if (errors.name === '' && errors.email === '') {
