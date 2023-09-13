@@ -6,12 +6,11 @@ import MoviesCard from '../MoviesCard/MoviesCard.js';
 import Preloader from '../Preloader/Preloader.js';
 import { DEVICE_PARAMETERS } from '../utils/Constants.js';
 
-function MoviesCardList({ movies, handleLikeFilm, handleDelteLike, savedMovies, handleDelteLikeTwo, isLoading, isError, isQueryfailed, SavedMoviesisQueryfailed, setError, setQueryfailed, setSavedMoviesQueryfailed, isErrorSavedMovies, reload, moviesArr,setMovies }) {
+function MoviesCardList({ movies, handleLikeFilm, handleDelteLike, savedMovies, handleDelteLikeTwo, isLoading, isError, isQueryfailed, SavedMoviesisQueryfailed, setError, setQueryfailed, setSavedMoviesQueryfailed, isErrorSavedMovies,  moviesArr, setMovies, setSavedMovies }) {
   const location = useLocation();
   const currLocation = location.pathname.toLowerCase();
   const [isActive, setIsActive] = useState(false);
   const lastQueryMovies = JSON.parse(localStorage.getItem(`searchmovies`));
-
 
   useEffect(() => {
     if ((currLocation === '/saved-movies')) {
@@ -54,16 +53,7 @@ function MoviesCardList({ movies, handleLikeFilm, handleDelteLike, savedMovies, 
     if (movies.length <= 0 && currLocation === '/saved-movies') {
       return
     }
-    if (currLocation === '/saved-movies' && reload) {
-      return moviesArr
-        .slice(0, loadMoreCards)
-        .map((movie) => {
-          return (
-
-            <MoviesCard key={movie.id} movie={movie} handleLikeFilm={handleLikeFilm} handleDelteLike={handleDelteLike} savedMovies={savedMovies} handleDelteLikeTwo={handleDelteLikeTwo} />
-          );
-        });
-    }
+   
     if (movies.length > 0) {
       return movies
         .slice(0, loadMoreCards)

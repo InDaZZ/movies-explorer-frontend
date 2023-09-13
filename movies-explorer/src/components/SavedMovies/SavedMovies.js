@@ -4,12 +4,10 @@ import SearchForm from '../SearchForm/SearchForm.js';
 import MoviesCardList from '../MoviesCardList/MoviesCardList.js';
 
 
-function SavedMovies({ movies, handleDelteLike, filterMovies, moviesArr, SavedMoviesisQueryfailed, setSavedMoviesQueryfailed, isErrorSavedMovies }) {
-
-  const [reload, setReload]= useState(false);
-  function reloadSavedMovies (state) {
-    setReload(state)
-  }
+function SavedMovies({ movies, handleDelteLike, filterMovies, moviesArr, SavedMoviesisQueryfailed, setSavedMoviesQueryfailed, isErrorSavedMovies, setSavedMovies }) {
+  console.log(movies)
+  console.log(moviesArr)
+  
   useEffect(() => {
 
   })
@@ -17,8 +15,8 @@ function SavedMovies({ movies, handleDelteLike, filterMovies, moviesArr, SavedMo
     <>
 
       <section className='savedmovies'>
-        <SearchForm filterMovies={filterMovies} moviesArr={moviesArr} movies={movies} reloadSavedMovies={reloadSavedMovies} setSavedMoviesQueryfailed={setSavedMoviesQueryfailed}></SearchForm>
-        <MoviesCardList parent='SavedMovies' movies={movies} handleDelteLike={handleDelteLike} SavedMoviesisQueryfailed={SavedMoviesisQueryfailed} setSavedMoviesQueryfailed={setSavedMoviesQueryfailed} isErrorSavedMovies={isErrorSavedMovies} reload={reload} moviesArr={moviesArr}></MoviesCardList>
+        <SearchForm filterMovies={filterMovies} moviesArr={moviesArr} movies={movies}  setSavedMoviesQueryfailed={setSavedMoviesQueryfailed} setSavedMovies={setSavedMovies}></SearchForm>
+        <MoviesCardList parent='SavedMovies' movies={movies} handleDelteLike={handleDelteLike} SavedMoviesisQueryfailed={SavedMoviesisQueryfailed} setSavedMoviesQueryfailed={setSavedMoviesQueryfailed} isErrorSavedMovies={isErrorSavedMovies}  moviesArr={moviesArr} setSavedMovies={setSavedMovies}></MoviesCardList>
       </section>
 
     </>

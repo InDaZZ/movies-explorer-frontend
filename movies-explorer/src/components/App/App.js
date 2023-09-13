@@ -173,6 +173,20 @@ function App() {
     if (page === '/movies') {
       localStorage.setItem(`searchmoviesquery`, JSON.stringify(query));
     }
+
+    if (page === '/saved-movies' && query === '') {
+      const filteredMovies =
+      moviesArr.map((movie) => {
+        if(movie.duration < 40){
+          return movie
+        }
+        
+      }).filter(notUndefined => notUndefined !== undefined);
+      console.log(moviesArr)
+      console.log(filteredMovies)
+     
+    }
+
     if (moviesArr.length <= 0 && page === "/saved-movies") {
       console.log('сработала1')
       setIsLoading(false);
@@ -226,6 +240,17 @@ function App() {
         return
       }
 
+      if (page === "/saved-movies" && filteredMovies.length > 0 && query === '') {
+        console.log('888888888888888888888888')
+        setIsLoading(false);
+        localStorage.removeItem(`searchSavedMoviesQueryfailed`)
+        localStorage.removeItem(`searchmoviesqueryIsError`)
+        setSavedMoviesQueryfailed(false);
+        setSavedMovies(filteredMovies);
+        return
+        
+      }
+
       if (page === "/saved-movies" && filteredMovies.length > 0) {
         console.log('i tut')
         setIsLoading(false);
@@ -235,6 +260,8 @@ function App() {
         setSavedMovies(filteredMovies);
         return
       }
+
+      
     }
     else {
       setIsLoading(false);
@@ -278,7 +305,7 @@ function App() {
         setIsActive((prevState) => !prevState);
         setAllSavedMovies((state) => state.filter((film) => film._id !== deletedMovies._id))
         setSavedMovies((state) => state.filter((film) => film._id !== deletedMovies._id))
-        
+
       })
       .catch((error) => {
         console.log(`Ошибка :( ${error})`)
@@ -325,7 +352,7 @@ function App() {
           <Route element={<ProtectedRoute isLogged={isLogged} />}>
             <Route path='/movies' element={<Movies movies={movies} savedMovies={savedMovies} handleLikeFilm={handleLikeFilm} filterMovies={filterMovies} setMovies={setMovies} moviesArr={allMovies} handleDelteLikeTwo={handleDelteLikeTwo} isLoading={isLoading} isError={isError} isQueryfailed={isQueryfailed} setError={setError} setQueryfailed={setQueryfailed} />} />
             <Route path='/saved-movies' element={<SavedMovies movies={savedMovies} handleDelteLike={handleDelteLike} filterMovies={filterMovies} moviesArr={allSavedMovies} isLoading={isLoading}
-              setSavedMoviesQueryfailed={setSavedMoviesQueryfailed} SavedMoviesisQueryfailed={SavedMoviesisQueryfailed} isErrorSavedMovies={isErrorSavedMovies} />} />
+              setSavedMoviesQueryfailed={setSavedMoviesQueryfailed} SavedMoviesisQueryfailed={SavedMoviesisQueryfailed} isErrorSavedMovies={isErrorSavedMovies} setSavedMovies={setSavedMovies}/>} />
             <Route path='/profile' element={<Profile exit={exit} openPopup={openPopup} />} />
           </Route>
         </Routes>

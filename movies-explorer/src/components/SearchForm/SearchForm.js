@@ -4,14 +4,14 @@ import { CurrentUserContext } from '../../context/userContexts.js';
 import './searchform.css';
 import iconSearch from '../../images/iconsearch.svg'
 
-function SearchForm({ filterMovies, moviesArr, movies, isCurrentUserFormState, isError, isQueryfailed, reloadSavedMovies, setSavedMoviesQueryfailed }) {
+function SearchForm({ filterMovies, moviesArr, movies, isCurrentUserFormState, isError, isQueryfailed, setSavedMoviesQueryfailed, setSavedMovies }) {
   const { setCurrentUserFormState } = useContext(CurrentUserContext);
   const [isQuery, setQuery] = useState('')
   const [checked, setChecked] = useState(false);
   const [isDuration, setDuration] = useState(Infinity)
   const location = useLocation();
   const currLocation = location.pathname.toLowerCase()
-
+ 
   useEffect(() => {
 
     if (localStorage.getItem(`searchmoviesquery`) && currLocation === '/movies') {
@@ -31,11 +31,7 @@ function SearchForm({ filterMovies, moviesArr, movies, isCurrentUserFormState, i
   useEffect(() => {
     if (currLocation === '/saved-movies' && isQuery === '') {
       setSavedMoviesQueryfailed(false)
-      reloadSavedMovies(true)
-    }
-
-    if (currLocation === '/saved-movies' && isQuery !== '') {
-      reloadSavedMovies(false)
+      setSavedMovies(moviesArr)
     }
 
     else {
@@ -78,11 +74,13 @@ function SearchForm({ filterMovies, moviesArr, movies, isCurrentUserFormState, i
       localStorage.setItem(`checkboxStateSavedMovies`, JSON.stringify(true));
     }
     if (checked === true && currLocation === '/saved-movies') {
+      setSavedMovies(moviesArr)
       setChecked(prevState => !prevState)
       setDuration(Infinity)
       filterMovies(isQuery, currLocation, moviesArr, Infinity, checked);
       localStorage.setItem(`checkboxStateSavedMovies`, JSON.stringify(false));
     }
+
   }
 
   function handleSubmit(evt) {
