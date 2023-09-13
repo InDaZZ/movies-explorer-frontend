@@ -181,14 +181,10 @@ function App() {
           return movie
         }
         
-      }).filter(notUndefined => notUndefined !== undefined);
-      console.log(moviesArr)
-      console.log(filteredMovies)
-     
+      }).filter(notUndefined => notUndefined !== undefined);  
     }
 
     if (moviesArr.length <= 0 && page === "/saved-movies") {
-      console.log('сработала1')
       setIsLoading(false);
       return setErrorSavedMovies(true)
     }
@@ -210,7 +206,6 @@ function App() {
 
 
       if (filteredMovies.length <= 0 && page === "/movies") {
-        console.log('i tut')
         setQueryfailed(true);
         localStorage.setItem(`searchmoviesqueryisQueryfailed`, JSON.stringify(true));
         setIsLoading(false);
@@ -218,7 +213,6 @@ function App() {
       }
 
       if (filteredMovies.length <= 0 && page === "/saved-movies") {
-        console.log('i tut')
         setSavedMoviesQueryfailed(true);
         localStorage.setItem(`searchSavedMoviesQueryfailed`, JSON.stringify(true));
         setIsLoading(false);
@@ -226,7 +220,6 @@ function App() {
       }
 
       if (page === "/movies" && filteredMovies.length > 0) {
-        console.log('i tut')
         setCurrentUserFormState({ lastQuery: query })
         setIsLoading(false);
         setQueryfailed(false);
@@ -241,7 +234,6 @@ function App() {
       }
 
       if (page === "/saved-movies" && filteredMovies.length > 0 && query === '') {
-        console.log('888888888888888888888888')
         setIsLoading(false);
         localStorage.removeItem(`searchSavedMoviesQueryfailed`)
         localStorage.removeItem(`searchmoviesqueryIsError`)
@@ -252,7 +244,6 @@ function App() {
       }
 
       if (page === "/saved-movies" && filteredMovies.length > 0) {
-        console.log('i tut')
         setIsLoading(false);
         localStorage.removeItem(`searchSavedMoviesQueryfailed`)
         localStorage.removeItem(`searchmoviesqueryIsError`)
