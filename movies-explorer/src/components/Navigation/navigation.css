@@ -1,0 +1,121 @@
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+@media screen and (max-width: 850px) {
+  .navigation {
+    display: flex;
+    justify-content: flex-end;
+    height: 100%;
+    margin: auto;
+  }
+}
+
+.navigation__pages-container {
+  display: flex;
+  align-items: center;
+  margin-left: 44px;
+}
+
+@media screen and (max-width: 850px) {
+  .navigation__pages-container {
+    display: none;
+  }
+}
+
+.navigation__page {
+  margin-right: 16px;
+  color: #000;
+  text-align: right;
+  font-family: Inter;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 18px;
+  text-decoration: none;
+}
+
+@media screen and (max-width: 850px) {
+  .navigation__page {
+    display: none;
+  }
+}
+
+.navigation__page:last-child {
+  margin-right: 0;
+}
+
+.navigation__profile-button {
+  max-width: 100px;
+  display: flex;
+  justify-content: space-between;
+  text-decoration: none;
+  border-radius: 50px;
+  border: 2px solid #AAA;
+  align-items: center;
+  width: 100px;
+  height: 32px;
+  align-self: center;
+  padding: 0;
+  margin: 0;
+}
+
+@media screen and (max-width: 850px) {
+  .navigation__profile-button {
+    display: none;
+  }
+}
+
+.navigation__profile-icon {
+  padding-left: 15px;
+}
+
+.navigation__profile-text {
+  text-decoration: none;
+  color: #000;
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 16px;
+  margin: 0;
+  padding-right: 11px;
+}
+
+@media screen and (max-width: 850px) {
+  .navigation__profile-text {
+    display: none;
+  }
+}
+
+.navigation__menu-button {
+  display: none;
+  background-image: url('../../images/menuButton.svg');
+  width: 44px;
+  height: 44px;
+  border: none;
+  background-position: center;
+
+}
+
+@media screen and (max-width: 850px) {
+  .navigation__menu-button {
+    display: block;
+    max-height: 40px;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .navigation__menu-button {
+    background-image: url('../../images/menuButtonMobile.svg');
+    background-color: #FFF;
+    background-position: right;
+  }
+}
+
+.navigation__menu-button:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}

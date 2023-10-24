@@ -1,0 +1,138 @@
+.sidemenu {
+  background-color: rgba(0, 0, 0, .3);
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  opacity: 0;
+  right: 0;
+  top: 0;
+  transition: all .8s linear;
+  visibility: hidden;
+  opacity: 0.3;
+}
+
+.sidemenu_active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.sidemenu__container {
+  width: 70%;
+  max-width: 520px;
+  height: 100%;
+  background-color: white;
+  position: fixed;
+  right: 0;
+  z-index: 2;
+  display: grid;
+  grid-template-rows: min-content min-content min-content 6fr;
+  padding: 161px 0 60px;
+  box-sizing: border-box;
+  justify-content: center;
+  justify-items: center;
+}
+
+@media screen and (max-width: 550px) {
+  .sidemenu__container {
+    width: 100%;
+    left: 0;
+    padding: 144px 0 46px;
+  }
+}
+
+.sidemenu__button-close {
+  width: 22px;
+  height: 22px;
+  position: absolute;
+  right: 28px;
+  top: 28px;
+  background-image: url(../../images/SidemenuButtonClose.svg);
+  background-color: rgb(0, 0, 0, 0);
+  border: none;
+  background-repeat: no-repeat;
+  z-index: 3;
+  background-position: center;
+}
+
+@media screen and (max-width: 550px) {
+  .sidemenu__button-close {
+    right: 18px;
+    top: 18px;
+  }
+}
+
+.sidemenu__page {
+  color: #000;
+  text-align: center;
+  font-family: Inter;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  text-decoration: none;
+  margin-bottom: 28px;
+}
+
+@media screen and (max-width: 550px) {
+  .sidemenu__page {
+    margin-bottom: 24px;
+  }
+}
+
+.sidemenu__page_active {
+  padding-bottom: 4px;
+  border-bottom: 3px solid black;
+  margin-bottom: 21px;
+}
+
+@media screen and (max-width: 550px) {
+  .sidemenu__page_active {
+    padding-bottom: 7px;
+    margin-bottom: 15px;
+  }
+}
+
+
+.sidemenu__profile-button {
+  max-width: 100px;
+  display: flex;
+  justify-content: space-between;
+  text-decoration: none;
+  border-radius: 50px;
+  border: 2px solid #AAA;
+  align-items: center;
+  width: 100px;
+  height: 32px;
+  align-self: center;
+  padding: 0;
+  margin: 0;
+}
+
+.sidemenu__profile-icon {
+  padding-left: 15px;
+}
+
+.sidemenu__profile-text {
+  text-decoration: none;
+  color: #000;
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 16px;
+  margin: 0;
+  padding-right: 11px;
+}
+
+.sidemenu__profile-page {
+  color: #000;
+  text-align: center;
+  font-family: Inter;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  margin: 0;
+}

@@ -1,0 +1,60 @@
+.popup__item {
+  border: none;
+  outline: none;
+  border-bottom: 1px solid rgb(0, 0, 0, .2);
+  width: 358px;
+  margin-left: 36px;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+}
+
+@media screen and (max-width: 650px) {
+  .popup__item {
+    margin-left: 22px;
+    max-width: 238px;
+  }
+}
+
+.popup__item_type_name {
+  padding: 48px 0 9px 0;
+}
+
+@media screen and (max-width: 650px) {
+  .popup__item_type_name {
+    padding-top: 75px;
+  }
+}
+
+.popup__item_type_email {
+  margin: 30px 0 0 36px;
+  padding-bottom: 9px;
+}
+
+@media screen and (max-width: 650px) {
+  .popup__item_type_email {
+    margin-left: 22px;
+  }
+}
+
+.popup__error {
+  display: flex;
+    justify-content: center;
+  z-index: 1;
+  top: calc(100% + 6px);
+  left: 36px;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
+  color: #FF0000;
+}
+
+@media screen and (max-width: 650px) {
+  .popup__error {
+    left: 22px;
+  }
+}

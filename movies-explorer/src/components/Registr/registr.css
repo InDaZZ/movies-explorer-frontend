@@ -1,0 +1,194 @@
+.registr {
+  max-width: 400px;
+  margin: auto;
+  padding-top: 40px;
+}
+
+@media screen and (max-width: 550px) {
+  .registr {
+    padding: 18px 30px 0;
+  }
+}
+
+.registr__heading {
+  margin: 0 0 40px;
+  color: #000;
+  font-family: Inter;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+@media screen and (max-width: 550px) {
+  .registr__heading {
+    margin: 0 0 82px;
+    text-align: center;
+    font-size: 24px;
+  }
+}
+
+.registr__item {
+  width: 100%;
+  padding: 15px;
+  border: none;
+  outline: none;
+  background-color: #F9F9F9;
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+
+.registr__item:-webkit-autofill {
+  box-shadow: inset 0 0 0 1000px #F9F9F9;
+}
+
+.registr__form {
+  display: flex;
+  flex-direction: column;
+  margin: 0 0 16px;
+}
+
+@media screen and (max-width: 850px) {
+  .registr__form {
+    max-width: 396px;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .registr__form {
+    padding-top: 30px;
+    max-width: 260px;
+    margin: 0 0 14px;
+  }
+}
+
+.registr__item-title {
+  margin: 0;
+  padding-bottom: 10px;
+  color: #A0A0A0;
+  font-family: Inter;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.registr__field {
+  padding-bottom: 22px;
+  width: 100%;
+  color: #000;
+  font-family: Inter;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.registr__field:nth-child(4) {
+  padding-bottom: 10px;
+}
+
+@media screen and (max-width: 550px) {
+  .registr__field {
+    font-weight: 400;
+  }
+}
+
+.registr__button-container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 68px;
+}
+
+@media screen and (max-width: 550px) {
+  .registr__button-container {
+    margin-top: 156px;
+  }
+}
+
+.registr__button {
+  border: none;
+  padding: 15px 0;
+  border-radius: 3px;
+  background: #000;
+  color: #FFF;
+  text-align: center;
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.registr__button_inactive {
+  color: #C4C4C4;
+  background: #FFFFFF;
+  border: 1px solid #C4C4C4;
+}
+
+
+@media screen and (max-width: 550px) {
+  .registr__button {
+    font-size: 12px;
+  }
+}
+
+.registr__button:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+.registr__textLink {
+  display: flex;
+  justify-content: center;
+  color: #A0A0A0;
+  text-align: center;
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  text-decoration: none;
+  text-align: center;
+}
+
+.registr__textLink:hover {
+  opacity: 0.7;
+}
+
+@media screen and (max-width: 550px) {
+  .registr__textLink {
+    font-size: 12px;
+  }
+}
+
+.registr__textLink-signin {
+  color: #000;
+  text-align: center;
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin-left: 6px;
+}
+
+@media screen and (max-width: 550px) {
+  .registr__textLink-signin {
+    font-size: 12px;
+  }
+}
+
+.registr__error-message {
+  color: #FF4062;
+  font-family: Inter;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.registr__error-message_submit {
+  text-align: center;
+  margin-bottom: 5px
+}

@@ -1,0 +1,125 @@
+.footer {
+  padding: 0 70px 0;
+}
+
+@media screen and (max-width: 850px) {
+  .footer {
+    padding: 0 30px 0;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .footer {
+    padding: 0 10px 20px;
+  }
+}
+
+.footer__title {
+  color: #A0A0A0;
+  text-align: center;
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-family: Inter;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  border-bottom: 1px solid #E8E8E8;
+  padding: 79px 0 19px;
+  margin: 0;
+}
+
+@media screen and (max-width: 550px) {
+  .footer__title {
+    padding-bottom: 21px;
+    font-size: 12px;
+    margin: 0 0 28px;
+  }
+}
+
+.footer__container {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 0;
+}
+
+@media screen and (max-width: 550px) {
+  .footer__container {
+    display: grid;
+    justify-content: center;
+    text-align: center;
+    padding: 0;
+  }
+}
+
+.footer__link-container {
+  align-self: center;
+}
+
+.footer__link-container:hover {
+  opacity: 0.7;
+}
+
+@media screen and (max-width: 550px) {
+  .footer__link-container_practicum {
+    grid-column: 1/2;
+    grid-row: 1/2;
+    padding: 0 0 8px;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .footer__link-container-github {
+    grid-column: 1/2;
+    grid-row: 2/3;
+  }
+}
+
+.footer__copyright {
+  color: #000;
+  font-family: Inter;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  max-width: 960px;
+  width: 100%;
+  margin: 0;
+}
+
+@media screen and (max-width: 550px) {
+  .footer__copyright {
+    grid-column: 1/2;
+    grid-row: 3/4;
+    padding-top: 29px
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .footer__copyright {
+    grid-column: 1/4;
+    grid-row: 3/4;
+  }
+}
+
+.footer__link {
+  color: #000;
+  text-align: right;
+  font-family: Inter;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  padding-right: 20px;
+}
+
+@media screen and (max-width: 550px) {
+  .footer__link {
+    padding: 0;
+    font-size: 12px;
+    text-decoration: none;
+  }
+}
+
+.footer__link_git {
+  padding: 0;
+}
